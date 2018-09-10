@@ -100,7 +100,10 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <li class="has-sub"><a href="areas.html#areas"><span class="toc-section-number">2</span> Spatial polygon areas</a><ul>
 <li><a href="areas.html#cities"><span class="toc-section-number">2.1</span> Cities</a></li>
 <li><a href="areas.html#kenyan-tanzania-border"><span class="toc-section-number">2.2</span> Kenyan-Tanzania border</a></li>
-<li><a href="areas.html#malawi-tanzania-zambia-border"><span class="toc-section-number">2.3</span> Malawi-Tanzania-Zambia border</a></li>
+<li class="has-sub"><a href="areas.html#malawi-tanzania-zambia-border"><span class="toc-section-number">2.3</span> Malawi-Tanzania-Zambia border</a><ul>
+<li><a href="areas.html#malawi"><span class="toc-section-number">2.3.1</span> Malawi</a></li>
+<li><a href="areas.html#tanzania-southern-border-area"><span class="toc-section-number">2.3.2</span> Tanzania Southern border area</a></li>
+</ul></li>
 </ul></li>
 <li><a href="prep.html#prep"><span class="toc-section-number">3</span> Preparation</a></li>
 </ul>
@@ -347,7 +350,9 @@ border_for_maw2 &lt;-<span class="st"> </span><span class="kw">list</span>(borde
 <div class="figure">--> <img src="02-areas_files/figure-html/mawplot-1.png" alt="Sampling areas in Malawi. Panel A shows the cut-off facilitated by the extended Zambian border line (red) and Panel B shows the final sampling area which is divided in ten bins." width="672"  /> <!--<span id="fig:mawplot"></span>
 <p class="caption marginnote">-->Figure 2.8: Sampling areas in Malawi. Panel A shows the cut-off facilitated by the extended Zambian border line (red) and Panel B shows the final sampling area which is divided in ten bins.<!--</p>--> <!--</div>--></span>
 </p>
-<p>Since the project is only interested in border areas between the three countries, the buffered area for Malawi gets clipped were it extends to the Mozambican border. Similar to the cut-off at the Tanzanian border for the sampling line, the Zambian border is extended and used to clip the sampling area in Malawi. Panel A in Figure <a href="areas.html#fig:mawplot">2.8</a> shows the</p>
+<div id="malawi" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Malawi</h3>
+<p>Since the project is only interested in border areas between the three countries, the buffered area for Malawi gets clipped were it extends to the Mozambican border. Similar to the cut-off at the Tanzanian border for the sampling line, the Zambian border is extended and used to clip the sampling area in Malawi. Panel A in Figure <a href="areas.html#fig:mawplot">2.8</a> shows the prolonged Zambian border line in red and the area. The part that is cut-off by the prolonged border is marked by lower saturation. Panel B shows the final sampling area for Malawi.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create cut off line for malawi
 rest_zam1 &lt;-<span class="st"> </span><span class="kw">gDifference</span>(zambia_adm0 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                           </span><span class="kw">as</span>(<span class="st">&quot;SpatialLines&quot;</span>),
@@ -425,7 +430,12 @@ maw_sampling_bin &lt;-<span class="st"> </span><span class="kw">prepare_sampling
   <span class="dt">b =</span> maw_border_area_50_to_<span class="dv">100</span>,
   <span class="dt">start_end =</span> maw_start_end[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>),],
   <span class="dt">number_of_bins =</span> <span class="dv">5</span>)</code></pre></div>
+</div>
+<div id="tanzania-southern-border-area" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Tanzania Southern border area</h3>
+<p><img src="02-areas_files/figure-html/tanzsouthern-1.png" width="672"  /></p>
 
+</div>
 </div>
 </div>
 <p style="text-align: center;">

@@ -292,7 +292,9 @@ border_for_maw2 <- list(border_for_maw1,maw_zam) %>%
 <p class="caption marginnote">-->(\#fig:mawplot)Sampling areas in Malawi. Panel A shows the cut-off facilitated by the extended Zambian border line (red) and Panel B shows the final sampling area which is divided in ten bins.<!--</p>-->
 <!--</div>--></span></p>
 
-Since the project is only interested in border areas between the three countries, the buffered area for Malawi gets clipped were it extends to the Mozambican border. Similar to the cut-off at the Tanzanian border for the sampling line, the Zambian border is extended and used to clip the sampling area in Malawi. Panel A in Figure \@ref(fig:mawplot) shows the 
+### Malawi
+
+Since the project is only interested in border areas between the three countries, the buffered area for Malawi gets clipped were it extends to the Mozambican border. Similar to the cut-off at the Tanzanian border for the sampling line, the Zambian border is extended and used to clip the sampling area in Malawi. Panel A in Figure \@ref(fig:mawplot) shows the prolonged Zambian border line in red and the area. The part that is cut-off by the prolonged border is marked by lower saturation. Panel B shows the final sampling area for Malawi.
 
 
 ```r
@@ -380,4 +382,10 @@ maw_sampling_bin <- prepare_sampling_bins(
   start_end = maw_start_end[c(2,4),],
   number_of_bins = 5)
 ```
+
+### Tanzania Southern border area
+
+
+
+<img src="02-areas_files/figure-html/tanzsouthern-1.png" width="672"  />
 
