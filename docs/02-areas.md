@@ -451,3 +451,18 @@ tanzania_sampling_bins <- bind(tanzania_sampling_bins1[c(1:5,8:10),],
 ```
 
 ### Zambia
+
+
+
+
+
+
+<p><span class="marginnote shownote">
+<!--
+<div class="figure">-->
+<img src="02-areas_files/figure-html/zambiasampling-1.png" alt="Sampling area in Zambia." width="672"  />
+<!--
+<p class="caption marginnote">-->(\#fig:zambiasampling)Sampling area in Zambia.<!--</p>-->
+<!--</div>--></span></p>
+
+The Zambian sampling area does not need any further cutting or merging since it determined the cut-off lines for the Malawian and Southern Tanzanian sampling area (Figure \@ref(fig:zambiasampling)).
