@@ -168,16 +168,8 @@ d4 <- d03 +
 grid.arrange(d1,d2,d4,layout_matrix=matrix(c(1,2,3),ncol=3))
 
 ```
-Figure \@ref(fig:darraw) shows the sampling areas for Dar Es Salaam. In Panel A Dar es Salaam has 7 different sampling areas, but one is rather small and is merged with its neighboring area (B and C).  
-The sampling areas for all three cities are visualized in Figure \@ref(fig:citybins).^[[Map style borrowed from Timo Grossenbacher.](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)]
-
-```{r citybins,fig.cap="Sampling areas in Lusaka.",cache=TRUE,cap.align="center",cache=TRUE}
-leaflet(data=city_table[2,]) %>%
-  addTiles %>%
-  addPolygons(data=dar_bins_6) %>% 
-  addPolygons(data=nairobi_bins) %>% 
-  addPolygons(data=lusaka_bins)
-```
+Figure \@ref(fig:darraw) shows the sampling areas for Dar Es Salaam. In Panel A Dar es Salaam has 7 different sampling areas, but one is rather small and is merged with its neighboring area (B and C).^[[Map style borrowed from Timo Grossenbacher.](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)]  
+The sampling areas for all three cities are visualized in Figure \@ref(fig:leafletmap).
 
 ## Kenyan-Tanzania border
 There are two border areas of interest: the border area between Kenya and Tanzania on the one hand and the border area between Malawi, Tanzania, and Zambia on the other.  
@@ -1216,14 +1208,19 @@ zambia_sampling_bin <- prepare_sampling_bins(a = zam_border_area_0_to_50,
 
 ## Summarising: Sampling border areas
 
-```{r leafborderareas,echo=FALSE,fig.cap="Sampling border areas in the four countries."}
+```{r leafletmap,fig.cap="Sampling border areas in the four countries."}
 leaflet() %>% 
-  addTiles() %>% 
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
   addPolygons(data=southern_tanzania_sampling_bins) %>% 
   addPolygons(data=northern_tanzania_sampling_bins) %>% 
   addPolygons(data=kenya_sampling_bins) %>% 
   addPolygons(data=maw_sampling_bin) %>% 
-  addPolygons(data=zambia_sampling_bin)
+  addPolygons(data=zambia_sampling_bin) %>% 
+  addPolygons(data=dar_bins_6) %>% 
+  addPolygons(data=nairobi_bins) %>% 
+  addPolygons(data=lusaka_bins)
+
+
 
 ```
 
