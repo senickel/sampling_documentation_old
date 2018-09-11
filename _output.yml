@@ -1,0 +1,8 @@
+bookdown::tufte_html_book:
+  css: my_tufte.css
+  highlight: tango
+  config:
+    toc:
+      sharing:
+        github: yes
+
