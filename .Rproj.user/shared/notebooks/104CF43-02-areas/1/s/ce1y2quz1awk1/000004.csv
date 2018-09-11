@@ -1,0 +1,7 @@
+"0","city_table <- list(c(city=""Dar es Salaam"",long=39.283333,lat=-6.8),"
+"0","  c(city=""Lusaka"",long=28.283333,lat=-15.416667),"
+"0","  c(city=""Nairobi"",long=36.81667,lat=-1.28333)) %>% "
+"0","  do.call(rbind,.) %>% "
+"0","  as.data.frame"
+"0","colnames(city_table) <- c(""City"",""Longitude"",""Latitude"")"
+"0","kable(city_table,caption = ""Longitude and latitude of Dar es Salaam, Lusaka, and Nairobi.\\label{tab:citytab}"")"

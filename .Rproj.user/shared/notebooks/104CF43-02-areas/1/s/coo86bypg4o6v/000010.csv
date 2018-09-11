@@ -1,0 +1,8 @@
+"0","zambia_sampling_bin <- prepare_sampling_bins(a = zam_border_area_0_to_50,
+                                             b = zam_border_area_50_to_100,
+                                             start_end = c(northern_most_point,zam_start_end[5,]),
+#zam_start_end[c(4,5),],
+                                             number_of_bins = 5)
+"
+"2","Error in Line(.) : coords must be a two-column matrix
+"

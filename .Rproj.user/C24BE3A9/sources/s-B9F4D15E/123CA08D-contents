@@ -1,0 +1,43 @@
+zam_border_area_0_to_50a <- create_border_area(
+  zambia_adm0,border_for_zamb2,width_in_km = 50)
+
+zam_border_area_0_to_50 <- create_border_polygon(
+  zam_border_area_0_to_50a,zambia_adm0,lakes)
+
+
+# 50 to 100
+zam_border_area_50_to_100a <- create_border_area(
+  zambia_adm0,border_for_zamb2,width_in_km = 100,
+  split_width = 49)
+
+zam_border_area_50_to_100_1 <- create_border_polygon(
+  zam_border_area_50_to_100a,zambia_adm0,lakes)
+
+zam_border_area_50_to_100 <- gDifference(zam_border_area_50_to_100_1,
+                                      zam_border_area_0_to_50)
+
+
+
+
+# take right points for the border
+border_for_zamb3 <- lapply(1:length(border_for_zamb2),function(x) {
+  gLineMerge(border_for_zamb2[x,])
+}) %>% 
+  do.call(rbind,.)
+
+border_for_zamb3_geom <- geom(border_for_zamb3) %>% 
+  as.data.frame %>% 
+  dplyr::select(x,y)
+
+
+zam_start_end <- lapply(1:length(border_for_zamb3),function(x) {
+  border_for_zamb3_geom<-geom(border_for_zamb3[x,])
+  border_for_zamb3_geom[c(1,nrow(border_for_zamb3_geom)),c("x","y")]
+}) %>% 
+  do.call(rbind,.) %>% 
+  as.data.frame
+
+zambia_sampling_bin <- create_sampling_bins_adj(a = zam_border_area_0_to_50,
+                                             b = zam_border_area_50_to_100,
+                                             start_end = zam_start_end[c(4,5),],
+                                             p4s = proj4string(border_for_zamb2))

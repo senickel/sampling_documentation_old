@@ -1,0 +1,5 @@
+"0","leaflet(data=city_table[2,]) %>%"
+"0","  addTiles %>%"
+"0","  addPolygons(data=dar_bins_6) %>% "
+"0","  addPolygons(data=nairobi_bins) %>% "
+"0","  addPolygons(data=lusaka_bins)"

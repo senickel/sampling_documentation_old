@@ -1,0 +1,23 @@
+tanzania_border_area_0_to_50 <- prepare_sampling_area(
+  tanzania_adm0,
+  border_tanz_ken,
+  lakes,
+  width_in_km = 50)
+
+# 0 - 50 km area
+tanzania_border_area_50_to_100_1 <- prepare_sampling_area(
+  tanzania_adm0,
+  border_tanz_ken,
+  lakes,
+  width_in_km = 100,
+  split_width = 49)
+
+tanzania_border_area_50_to_100 <- gDifference(
+  tanzania_border_area_50_to_100_1,
+  tanzania_border_area_0_to_50)
+
+tanzania_sampling_bins <- prepare_sampling_bins(
+  a = tanzania_border_area_0_to_50,
+  b = tanzania_border_area_50_to_100,
+  start_end = start_end,
+  number_of_bins = 5)

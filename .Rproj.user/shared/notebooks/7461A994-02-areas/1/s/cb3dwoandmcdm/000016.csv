@@ -1,0 +1,5 @@
+"0","kable(data.frame(1:2,1:2))
+"
+"2","Error in system(command) : 
+  invalid input 'C:\PROGRA~1\RStudio\bin\pandoc\pandoc.exe +RTS -K512m -RTS ""C:\Users\senic\AppData\Local\Temp\Rtmpk3bmBb\_rs_md_169072333d8e.md"" --to html4 --output ""C:\Users\senic\ShareFile\Persönliche Ordner\Projects\KTZ sampling grid 2\master_1\documentation_2\.Rproj.user\shared\notebooks\7461A994-02-areas\1\s\cb3dwoandmcdm_t\_rs_html_16903eeb355.html""' in 'utf8towcs'
+"

@@ -1,0 +1,6 @@
+"0","lusaka_bins <- prepare_sampling_bins_city("
+"0","  adm0 = zambia_adm0,"
+"0","  coords=city_table[2,2:3],"
+"0","  lakes = lakes,"
+"0","  radius_inner_circle=25,"
+"0","  radius_outer_circle=50)"
