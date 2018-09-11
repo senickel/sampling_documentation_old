@@ -1,6 +1,3 @@
-# Spatial polygon areas {#areas}
-
-First, I will discuss the urban sampling areas before turning to the more complicated border areas.
 
 
 
@@ -20,7 +17,17 @@ options(stringsAsFactors = FALSE)
 
 
 
+# Spatial polygon areas {#areas}
 
+<p><span class="marginnote shownote">
+<!--
+<div class="figure">-->
+<img src="02-areas_files/figure-html/darraw-1.png" alt="Panel A shows sampling bins for Dar es Salaam. The red rectangle is the clipped area shown in Panel B and C. The green and blue area in B are merged to the blue area in C." width="672"  />
+<!--
+<p class="caption marginnote">-->(\#fig:darraw)Panel A shows sampling bins for Dar es Salaam. The red rectangle is the clipped area shown in Panel B and C. The green and blue area in B are merged to the blue area in C.<!--</p>-->
+<!--</div>--></span></p>
+
+First, I will discuss the urban sampling areas before turning to the more complicated border areas.
 
 ## Cities
 The sampling area is defined by taking a 50 km radius around the center of the respective city. The coordinates from Table \@ref(tab:leaf1) are taken from Wikipedia.^[https://Wikipedia.org]  
@@ -48,26 +55,6 @@ lusaka_bins <- prepare_sampling_bins_city(
   radius_outer_circle=50)
 ```
 
-
-
-
-
-
-<p><span class="marginnote shownote">
-<!--
-<div class="figure">-->
-<img src="02-areas_files/figure-html/darraw-1.png" alt="Panel A shows sampling bins for Dar es Salaam. The red rectangle is the clipped area shown in Panel B and C. The green and blue area in B are merged to the blue area in C." width="672"  />
-<!--
-<p class="caption marginnote">-->(\#fig:darraw)Panel A shows sampling bins for Dar es Salaam. The red rectangle is the clipped area shown in Panel B and C. The green and blue area in B are merged to the blue area in C.<!--</p>-->
-<!--</div>--></span></p>
-Figure \@ref(fig:darraw) shows the sampling areas for Dar Es Salaam. In Panel A Dar es Salaam has 7 different sampling areas, but one is rather small and is merged with its neighboring area (B and C).^[[Map style borrowed from Timo Grossenbacher.](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)]  
-The sampling areas for all three cities are visualized in Figure \@ref(fig:leafletmap).
-
-## Kenyan-Tanzania border
-There are two border areas of interest: the border area between Kenya and Tanzania on the one hand and the border area between Malawi, Tanzania, and Zambia on the other.  
-Since the border between those states is the defining element for the respective sampling area, they are discussed separately.
- 
-
 <p><span class="marginnote shownote">
 <!--
 <div class="figure">-->
@@ -76,6 +63,23 @@ Since the border between those states is the defining element for the respective
 <p class="caption marginnote">-->(\#fig:borderktplot)Kenya and Tanzania with shared land border in red.<!--</p>-->
 <!--</div>--></span></p>
 
+
+Figure \@ref(fig:darraw) shows the sampling areas for Dar Es Salaam. In Panel A Dar es Salaam has 7 different sampling areas, but one is rather small and is merged with its neighboring area (B and C).^[[Map style borrowed from Timo Grossenbacher.](https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/)]  
+The sampling areas for all three cities are visualized in Figure \@ref(fig:leafletmap).  
+
+
+## Kenyan-Tanzania border
+<p><span class="marginnote shownote">
+<!--
+<div class="figure">-->
+<img src="02-areas_files/figure-html/plotkenyaborder-1.png" alt="Sampling area with sampling bins in Kenya (A) and Nothern Tanzania (B). The red colored areas mark the 0-50 km sampling area and the 50-100 km area is colored in blue." width="672"  />
+<!--
+<p class="caption marginnote">-->(\#fig:plotkenyaborder)Sampling area with sampling bins in Kenya (A) and Nothern Tanzania (B). The red colored areas mark the 0-50 km sampling area and the 50-100 km area is colored in blue.<!--</p>-->
+<!--</div>--></span></p>
+
+There are two border areas of interest: the border area between Kenya and Tanzania on the one hand and the border area between Malawi, Tanzania, and Zambia on the other.  
+Since the border between those states is the defining element for the respective sampling area, they are discussed separately.  
+  
 The land border between Kenya and Tanzania is the defining element and we can extract it by simply loading the Tanzanian `SpatialPolygonsDataFrame`, which includes the third administrative division. Waterbodies are declared as such and they are easily removed. In the next step, the `SpatialPolygons` object is transformed to a `SpatialLines` object and is cropped by the national borders of Kenya.^[There is a 1 meter buffer around Kenya to make sure it overlaps with the `SpatialLines` object.] The most Western and Eastern points of the border are selected which we will need for the constructions of the bin.
 
 
@@ -104,28 +108,20 @@ start_end <- border_tanz_ken_geom[c(1,nrow(border_tanz_ken_geom)),]
 
 
 
+
 <p><span class="marginnote shownote">
 <!--
 <div class="figure">-->
-<img src="02-areas_files/figure-html/plotkenyaborder-1.png" alt="Sampling area in Kenya. Panel A shows the 0-50 km area (red) and the 50-100 km area (blue). Panel B shows the sampling units used as secondary sampling units." width="672"  />
+<img src="02-areas_files/figure-html/produceborderplot-1.png" alt="Malawi, Tanzania, and Zambia and their common border in red." width="672"  />
 <!--
-<p class="caption marginnote">-->(\#fig:plotkenyaborder)Sampling area in Kenya. Panel A shows the 0-50 km area (red) and the 50-100 km area (blue). Panel B shows the sampling units used as secondary sampling units.<!--</p>-->
+<p class="caption marginnote">-->(\#fig:produceborderplot)Malawi, Tanzania, and Zambia and their common border in red.<!--</p>-->
 <!--</div>--></span></p>
+
 
 The border between Kenya and Tanzania is the start point for building the sampling areas. In our project we want to stratify by a 0-50 and a 50-100 km border area (Figure \@ref(fig:plotkenyaborder) Panel A). Both areas are successively built by implementing the function `prepare_sampling_area`. The 50-100 km area is constructed in a way that it overlaps with the 0-50 km area and then is cut in the following step. This way we make sure that we do not have any empty space between those two areas.  
-Finally, we pass both areas in the `prepare_sampling_bins` function, which further divides both areas in 5 more or less equally sized bins which will serve as the secondary sampling unit (Figure \@ref(fig:plotkenyaborder) Panel B). Here, the variable `start_end` comes in handy because a simple line is drawn to connect both points and the split it into 5 equally sized areas.  
-The procedure is the same for the Nothern Tanzanian side (Figure \@ref(fig:northerntan)).  
-
-
-<p><span class="marginnote shownote">
-<!--
-<div class="figure">-->
-<img src="02-areas_files/figure-html/northerntan-1.png" alt="Sampling area in Northern Tanzania." width="672"  />
-<!--
-<p class="caption marginnote">-->(\#fig:northerntan)Sampling area in Northern Tanzania.<!--</p>-->
-<!--</div>--></span></p>
-
-
+Finally, we pass both areas in the `prepare_sampling_bins` function, which further divides both areas in 5 more or less equally sized bins which will serve as the secondary sampling unit. Here, the variable `start_end` comes in handy because a simple line is drawn to connect both points and the split it into 5 equally sized areas.  
+  
+The procedure is the same for the Nothern Tanzanian side (Figure \@ref(fig:plotkenyaborder) Panel B).  
 
 
 ```r
@@ -179,21 +175,10 @@ northern_tanzania_sampling_bins <- prepare_sampling_bins(
   number_of_bins = 5)
 ```
 
-
-
-For the area on the Tanzania side of the Kenya-Tanzania border, the above code is analogous and only the `adm0` argument of `prepare_sampling_area` needs to be changed. Figure \@ref(fig:northerntan) shows the resulting sampling area.
+For the area on the Tanzania side of the Kenya-Tanzania border, the above code is analogous and only the `adm0` argument of `prepare_sampling_area` needs to be changed. Figure \@ref(fig:plotkenyaborder) Panel B shows the resulting sampling area.
 
 ## Malawi-Tanzania-Zambia border
 
-
-
-<p><span class="marginnote shownote">
-<!--
-<div class="figure">-->
-<img src="02-areas_files/figure-html/produceborderplot-1.png" alt="Malawi, Tanzania, and Zambia and their common border in red." width="672"  />
-<!--
-<p class="caption marginnote">-->(\#fig:produceborderplot)Malawi, Tanzania, and Zambia and their common border in red.<!--</p>-->
-<!--</div>--></span></p>
 
 <p><span class="marginnote shownote">
 <!--
@@ -301,7 +286,8 @@ border_for_maw2 <- list(border_for_maw1,maw_zam) %>%
 <!--
 <p class="caption marginnote">-->(\#fig:mawplot)Sampling areas in Malawi. Panel A shows the cut-off facilitated by the extended Zambian border line (red) and Panel B shows the final sampling area which is divided in ten bins.<!--</p>-->
 <!--</div>--></span></p>
-
+  
+  
 ### Malawi
 
 Since the project is only interested in border areas between the three countries, the buffered area for Malawi gets clipped were it extends to the Mozambican border. Similar to the cut-off at the Tanzanian border for the sampling line, the Zambian border is extended and used to clip the sampling area in Malawi. Panel A in Figure \@ref(fig:mawplot) shows the prolonged Zambian border line in red and the area. The part that is cut-off by the prolonged border is marked by lower saturation. Panel B shows the final sampling area for Malawi.
@@ -365,8 +351,6 @@ maw_border_area_50_to_100 <- prepare_sampling_area(
 maw_border_area_50_to_100_cropped <- crop(maw_border_area_50_to_100,
                                       cropper_maw)
 ```
-
-
 
 
 ```r
@@ -516,7 +500,7 @@ zambia_sampling_bin <- prepare_sampling_bins(a = zam_border_area_0_to_50,
 ```
 
 
-## Summarising: Sampling border areas
+## Summarising: Sampling border areas  
 
 
 ```r

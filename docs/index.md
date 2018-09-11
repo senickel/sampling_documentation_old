@@ -6,6 +6,8 @@ site: bookdown::bookdown_site
 output: 
   bookdown::tufte_html_book:
     split_by: chapter
+    includes:
+      in_header: header.html
 documentclass: book
 biblio-style: apalike
 link-citations: yes

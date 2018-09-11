@@ -39,6 +39,30 @@
 <script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<script type="text/javascript">
+
+// toggle visibility of R source blocks in R Markdown output
+function toggle_R() {
+  var x = document.getElementsByClassName('r');
+  if (x.length == 0) return;
+  function toggle_vis(o) {
+    var d = o.style.display;
+    o.style.display = (d == 'block' || d == '') ? 'none':'block';
+  }
+
+  for (i = 0; i < x.length; i++) {
+    var y = x[i];
+    if (y.tagName.toLowerCase() === 'pre') toggle_vis(y);
+  }
+
+    var elem = document.getElementById("myButton1");
+    if (elem.value === "Hide Global") elem.value = "Show Global";
+    else elem.value = "Hide Global";
+}
+
+document.write('<input onclick="toggle_R();" type="button" value="Hide Global" id="myButton1" style="position: absolute; top: 10%; right: 2%; z-index: 200"></input>')
+
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -121,6 +145,17 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 <p>The book is divided into four broad chapters that contain all necessary steps to replicate the sampling for GLD’s urbanization project.<br />
 The following chapter discusses and walks through how the necessary spatial polygon files are constructed. The third chapter focus on the preparation of the sampling areas, whereas the fourth chapter describes the sampling methods. Finally, the two different sampling methods are discussed by simulating different tables for selected key variables.</p>
 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(knitr)
+<span class="kw">library</span>(geosampling)
+<span class="kw">library</span>(sf)
+<span class="kw">library</span>(rgdal)
+<span class="kw">library</span>(rgeos)
+<span class="kw">library</span>(raster)
+<span class="kw">library</span>(leaflet)
+<span class="kw">library</span>(gridExtra)
+<span class="kw">library</span>(bookdown)
+<span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 <p style="text-align: center;">
 <a href="index.html"><button class="btn btn-default">Previous</button></a>
